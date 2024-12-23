@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  server:
+    image: softeng_homework/app
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "81:81"
