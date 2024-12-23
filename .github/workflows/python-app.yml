@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          export PYTHONPATH=. && export TOKEN=$TOKEN && pytest
+          export PYTHONPATH=. && export TOKEN=${TOKEN} && pytest
         env:
           TOKEN: ${{ secrets.TOKEN }}
   docker_build:
