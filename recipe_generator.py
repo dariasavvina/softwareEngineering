@@ -4,7 +4,8 @@ import requests
 import os
 
 token = os.environ.get('TOKEN')
-
+if token is None or token == '':
+    raise ValueError('TOKEN environment variable is not set')
 
 def generation_prompt(parameters: RecipesGeneratingParameters) -> str:
     products_str = ', '.join(parameters.products)
