@@ -5,11 +5,13 @@ from PIL import Image
 
 client = TestClient(app)
 
-url = '/recipes'
+recipes_url = '/recipes'
+
+image_objects_url = '/image_objects'
 
 
 def test_generate_recipes():
-    response = client.post(url,
+    response = client.post(recipes_url,
                            json={"count_recipes": 1, "theme": "завтрак", "products": ['морковь', 'яблоко', 'сметана']})
     assert response.status_code == 200
     result = response.json()
@@ -23,7 +25,7 @@ def test_generate_recipes():
                           (None, "завтрак", None),
                           (None, None, ['Морковь'])])
 def test_error_when_any_parameters_none(count_recipes, theme, products):
-    response = client.post(url,
+    response = client.post(recipes_url,
                            json={"count_recipes": count_recipes, "theme": theme, "products": products}
                            )
     assert response.status_code != 200
@@ -34,7 +36,5 @@ def test_error_when_any_parameters_none(count_recipes, theme, products):
 #                           ("./assets/carrot_broccoli.jpg", ["carrot", "broccoli"]),
 #                           ("./assets/pizza.jpg", ["pizza"])])
 # def test_process_image(image_path, expected_result):
-#     response = client.post(url,
-#                            json={"count_recipes": count_recipes, "theme": theme, "products": products}
-#                            )
-#     assert response.status_code != 200
+#     image_data = Image.open(image_path)
+#     print(image_data.len())
