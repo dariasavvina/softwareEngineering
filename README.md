@@ -6,17 +6,7 @@
 pip install -r requirements.txt
 ```
 
-Для локального запуска yolov11: установить [этот репозиторий](https://github.com/YaroslavKomarov/YoloV11).
-Установить зависимости в корне проекта:
-```
-pip install -r requirements.txt
-```
 Выбрать нужную конфигурацию железа и установить torch: https://pytorch.org/get-started/locally/
-
-Запустить приложение на 8001 порту:
-```
-uvicorn yolo_api:app --host 127.0.0.1 --port 8001
-```
 
 Для того чтобы запустить общий сервер основного приложения нужно выполнить команду: 
 ```
