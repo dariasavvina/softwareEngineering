@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Dict
 
 @dataclass
 class Recipes:
@@ -13,5 +12,5 @@ class RecipesGeneratingParameters:
 
 @dataclass
 class ImageObjectsResponse:
-    response: Dict[str, int]
+    response: [str]
 

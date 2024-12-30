@@ -1,13 +1,12 @@
 import requests
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
-from model import RecipesGeneratingParameters, ImageObjectsResponse
+from model import RecipesGeneratingParameters
 from recipe_generator import generation_recipes
+from yolo_prediction import yolo_predict
 
 
 app = FastAPI()
-
-YOLOv10_URl = "https://8001/yolov10"
 
 class RecipesGeneratingParametersBody(BaseModel):
     count_recipes: int
@@ -25,11 +24,4 @@ def generate_recipes(body: RecipesGeneratingParametersBody):
 @app.post("/image_objects")
 async def process_image(file: UploadFile = File(...)):
     image_data = await file.read()
-
-    response = requests.post(YOLOv10_URl, files={"file": ("image.jpg", image_data, "image/jpeg")})
-    ImageObjectsResponse
-
-    if response.status_code == 200:
-        return ImageObjectsResponse(response = response.text)
-    else:
-        return {"error": "Failed to process image"}
+    return yolo_predict(image_data)

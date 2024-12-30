@@ -3,7 +3,7 @@ from model import Recipes
 import requests
 import os
 
-token = os.environ.get('TOKEN')
+token = "sk-0cPj93t2aM0U8PYIiLogcgfOae854MDC"
 if token is None or token == '':
     raise ValueError('TOKEN environment variable is not set')
 
